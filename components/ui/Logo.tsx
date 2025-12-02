@@ -7,19 +7,23 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <Link href="/" className="block select-none">
+    <Link href="/" className="block select-none relative z-30">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex items-center justify-start w-fit origin-left hover:scale-105 transition-transform duration-300"
+        className="
+          flex items-center justify-start w-fit origin-left 
+          hover:scale-105 transition-transform duration-300
+          -mt-1 sm:-mt-1 md:mt-6 lg:mt-8
+        "
       >
         <Image
-          src="/logo/logo5.png"
-          alt="Gerkin Construction Logo"
-          width={240}
-          height={80}
-          className="w-[100px] sm:w-[130px] md:w-[140px] lg:w-[160px] h-auto"
+          src="/logo/radio.png"
+          alt="90.1"
+          width={300}
+          height={100}
+          className="w-[140px] sm:w-[160px] md:w-[200px] lg:w-[220px] h-auto"
           priority
         />
       </motion.div>
