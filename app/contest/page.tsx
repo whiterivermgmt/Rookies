@@ -33,7 +33,7 @@ const ComingSoonPage = () => {
         className="mb-8"
       >
         <Image
-          src="/logo/radio.jpg"
+          src="/logo/radio.png"
           alt="Fun! 90.1 WBED Logo"
           width={200}
           height={100}
