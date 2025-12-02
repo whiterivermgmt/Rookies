@@ -1,17 +1,13 @@
 "use client";
 
 import React from "react";
-import { SiFacebook, SiInstagram, SiGoogle } from "react-icons/si";
+import { SiFacebook, SiInstagram } from "react-icons/si";
 import { motion } from "framer-motion";
 
 const locations = [
   {
-    address: "2319 Mitchell Rd - Bedford, IN 47421",
-    query: "2319 Mitchell Rd, Bedford, IN 47421",
-  },
-  {
-    address: "107 N Gospel St - Paoli, IN 47454",
-    query: "107 N Gospel St, Paoli, IN 47454",
+    address: "1016-B 15th Street, Bedford, IN 47421",
+    query: "1016-B 15th Street, Bedford, IN 47421",
   },
 ];
 
@@ -32,7 +28,7 @@ const ContactPage = () => {
       >
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch!</h1>
         <p className="text-gray-600 max-w-2xl mx-auto">
-          Providing services to Bedford and surrounding areas.
+          Fun! 90.1 WBED – Bringing you the best hits in Lawrence County.
         </p>
       </motion.div>
 
@@ -45,7 +41,7 @@ const ContactPage = () => {
       >
         <h2 className="text-2xl font-semibold mb-2">Contact Form</h2>
         <p className="text-gray-600 mb-4">
-          Contact Copy Trolley for printing services or inquiries. We'll respond as soon as possible.
+          Contact Fun! 90.1 WBED for song requests, questions, or inquiries. We'll get back to you as soon as possible.
         </p>
 
         <input
@@ -69,22 +65,22 @@ const ContactPage = () => {
           className="px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-red-600 transition resize-none"
         />
 
-        <div className="flex gap-4 mt-2">
+        <div className="flex gap-4 mt-2 justify-center">
           <a
-            href="https://www.facebook.com/p/Copy-Trolley-100063464026096/"
+            href="https://www.facebook.com/shannonanddeb"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-red-600 hover:text-orange-400 text-2xl transition"
+            className="text-red-600 hover:text-yellow-300 text-2xl transition"
           >
             <SiFacebook />
           </a>
           <a
-            href="https://www.google.com/search?q=copy+trolley"
+            href="https://www.instagram.com/shannonanddeb/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-red-600 hover:text-orange-400 text-2xl transition"
+            className="text-red-600 hover:text-yellow-300 text-2xl transition"
           >
-            <SiGoogle />
+            <SiInstagram />
           </a>
         </div>
 
@@ -106,7 +102,7 @@ const ContactPage = () => {
         {/* Locations */}
         <div className="flex flex-col items-center bg-white p-6 rounded-2xl shadow hover:shadow-xl transition">
           <i className="fa-solid fa-location-dot text-3xl text-red-600 mb-2"></i>
-          <h3 className="text-xl font-semibold mb-2">Locations</h3>
+          <h3 className="text-xl font-semibold mb-2">Location</h3>
           <div className="text-gray-600 text-center space-y-1">
             {locations.map((loc, idx) => (
               <p
@@ -125,10 +121,10 @@ const ContactPage = () => {
           <i className="fa-solid fa-envelope text-3xl text-red-600 mb-2"></i>
           <h3 className="text-xl font-semibold mb-1">Email</h3>
           <a
-            href="mailto:copytrolley@gmail.com"
+            href="mailto:fun@wbedfm.com"
             className="text-gray-600 hover:text-red-600 transition"
           >
-            copytrolley@gmail.com
+            fun@wbedfm.com
           </a>
         </div>
 
@@ -137,8 +133,8 @@ const ContactPage = () => {
           <i className="fa-solid fa-phone text-3xl text-red-600 mb-2"></i>
           <h3 className="text-xl font-semibold mb-2">Phone</h3>
           <p className="text-gray-600">
-            <a href="tel:+18127887749" className="hover:text-red-600 transition">
-              812‑788‑7749
+            <a href="tel:+18122791957" className="hover:text-red-600 transition">
+              +1 812-279-1957
             </a>
           </p>
         </div>

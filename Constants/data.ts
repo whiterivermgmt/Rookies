@@ -20,8 +20,8 @@ export const headerData = [
     title: "About",
     href: "/about", // not used as a button — hover opens submenu
     submenu: [
-      { title: "What We Do", href: "/what-we-do", icon: BookOpen },
-      { title: "Who We Are", href: "/who-we-are", icon: Users },
+      { title: "What We Do", href: "/whatwedo", icon: BookOpen },
+      { title: "Who We Are", href: "/whoweare", icon: Users },
       { title: "Advertise", href: "/advertise", icon: ClipboardList },
     ],
   },
