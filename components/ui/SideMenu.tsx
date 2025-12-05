@@ -3,11 +3,11 @@
 import React, { FC, useState, useEffect } from "react";
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-import { SiFacebook, SiGoogle, SiInstagram, SiYelp } from "react-icons/si";
+import { SiFacebook, SiGoogle, SiInstagram } from "react-icons/si";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { headerData } from "@/Constants/data";
-import { IoIosPhonePortrait } from "react-icons/io";
+import Logo from "./Logo";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -19,21 +19,14 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
   const [isMounted, setIsMounted] = useState(false);
   const pathName = usePathname();
 
-  // Prevent hydration mismatch
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  useEffect(() => setIsMounted(true), []);
 
-  const toggleSubmenu = (index: number) => {
+  const toggleSubmenu = (index: number) =>
     setOpenIndex(openIndex === index ? null : index);
-  };
 
-  // Auto-close on screen resize
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768 && isOpen) {
-        handleClose();
-      }
+      if (window.innerWidth >= 768 && isOpen) handleClose();
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -41,13 +34,20 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   const handleClose = () => {
     onClose();
-    setOpenIndex(null); // Reset submenu whenever sidebar closes
+    setOpenIndex(null);
   };
 
   const socialLinks = [
-    { href: "https://www.facebook.com/shannonanddeb/", icon: <SiFacebook />, name: "Facebook" },
-    { href: "https://www.instagram.com/shannonanddeb/", icon: <SiInstagram />, name: "Instagram" },
-    { href: "/mobileapp", icon: <IoIosPhonePortrait />, name: "Mobile App" },
+    {
+      href: "https://www.facebook.com/profile.php?id=100063690004065",
+      icon: <SiFacebook />,
+      name: "Facebook",
+    },
+    {
+      href: "https://www.google.com/search?q=johnny+junctions",
+      icon: <SiGoogle />,
+      name: "Google Reviews",
+    },
   ];
 
   if (!isMounted) return null;
@@ -70,24 +70,18 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
 
       {/* Sidebar */}
       <motion.div
-        className="fixed top-0 left-0 h-full w-72 z-50 shadow-2xl flex flex-col justify-between rounded-r-3xl bg-[#383838]"
+        className="fixed top-0 left-0 h-full w-72 z-50 shadow-xl flex flex-col justify-between rounded-r-3xl bg-gray-100"
         initial={{ x: "-100%" }}
         animate={{ x: isOpen ? 0 : "-100%" }}
         transition={{ type: "spring", stiffness: 200, damping: 25 }}
       >
-        {/* Close Button */}
-        <div className="flex justify-end p-4">
-          <motion.button
-            onClick={handleClose}
-            whileHover={{ rotate: 90, scale: 1.15 }}
-            className="text-red-600 hover:text-red-800 p-3 rounded-full transition-all duration-300 shadow-sm bg-gray-100/80 cursor-pointer"
-          >
-            <ChevronDown className="w-7 h-7 rotate-45" />
-          </motion.button>
+        {/* Logo */}
+        <div className="flex justify-center items-center p-6 border-b border-gray-300">
+          <Logo />
         </div>
 
         {/* Menu Items */}
-        <nav className="flex flex-col gap-3 px-4 mt-2 overflow-y-auto">
+        <nav className="flex flex-col gap-2 px-4 mt-4 overflow-y-auto">
           {headerData.map((item, idx) => {
             const hasSubmenu = item.submenu && item.submenu.length > 0;
             const isActive = pathName === item.href;
@@ -96,22 +90,27 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
               <div key={item.title} className="w-full">
                 {/* Main item */}
                 <div
-                  className={`flex justify-between items-center w-full px-5 py-4 text-xl font-bold rounded-[28px] cursor-pointer transition-colors duration-200
-                    ${isActive ? "bg-[#f6efe5] text-[#c21a1a]" : "text-white"}
-                    group hover:bg-[#f6efe5] hover:text-[#c21a1a"]`}
-                  onClick={() => {
-                    if (hasSubmenu) toggleSubmenu(idx);
-                    else handleClose();
-                  }}
+                  className={`flex justify-between items-center w-full px-5 py-4 text-lg font-bold rounded-2xl cursor-pointer transition-colors duration-200
+                    ${isActive ? "bg-[#57b0c7] text-white" : "text-gray-800"}
+                    hover:bg-[#57b0c7] hover:text-white`}
+                  onClick={() =>
+                    hasSubmenu ? toggleSubmenu(idx) : handleClose()
+                  }
                 >
                   {hasSubmenu ? (
-                    <span className={`transition-colors duration-200 ${isActive ? "text-[#c21a1a]" : "group-hover:text-[#c21a1a]"}`}>
+                    <span
+                      className={`transition-colors duration-200 ${
+                        isActive ? "text-white" : "text-gray-800"
+                      }`}
+                    >
                       {item.title}
                     </span>
                   ) : (
                     <Link
                       href={item.href}
-                      className={`w-full transition-colors duration-200 ${isActive ? "text-[#c21a1a]" : "group-hover:text-[#c21a1a]"}`}
+                      className={`w-full transition-colors duration-200 ${
+                        isActive ? "text-white" : "text-gray-800"
+                      }`}
                       onClick={handleClose}
                     >
                       {item.title}
@@ -119,8 +118,11 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                   )}
                   {hasSubmenu && (
                     <ChevronDown
-                      className={`w-5 h-5 transition-transform duration-200
-                        ${openIndex === idx || isActive ? "rotate-180 text-[#c21a1a]" : "text-white"}`}
+                      className={`w-5 h-5 transition-transform duration-200 ${
+                        openIndex === idx || isActive
+                          ? "rotate-180 text-white"
+                          : "text-gray-800"
+                      }`}
                     />
                   )}
                 </div>
@@ -133,22 +135,24 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.3 }}
-                      className="flex flex-col ml-2 mt-2 gap-2"
+                      className="flex flex-col ml-4 mt-2 gap-2"
                     >
-                      {item.submenu.map(sub => {
+                      {item.submenu.map((sub) => {
                         const isSubActive = pathName === sub.href;
                         return (
                           <Link
                             key={sub.title}
                             href={sub.href}
                             onClick={handleClose}
-                            className={`px-5 py-3 rounded-[28px] text-lg font-semibold transition-colors duration-200
-                              ${isSubActive ? "bg-[#f6efe5] text-[#c21a1a]" : "text-white"}
-                              hover:bg-[#f6efe5] hover:text-[#c21a1a"]`}
+                            className={`px-4 py-2 rounded-xl text-base font-semibold transition-colors duration-200
+                              ${
+                                isSubActive
+                                  ? "bg-[#57b0c7] text-white"
+                                  : "text-gray-800"
+                              }
+                              hover:bg-[#57b0c7] hover:text-white`}
                           >
-                            <span className={`${isSubActive ? "text-[#c21a1a]" : "hover:text-[#c21a1a]"} transition-colors duration-200`}>
-                              {sub.title}
-                            </span>
+                            {sub.title}
                           </Link>
                         );
                       })}
@@ -168,9 +172,9 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-12 h-12 rounded-full bg-red-600 shadow-md hover:bg-red-700 transition-colors duration-200"
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-[#57b0c7] text-white shadow-md hover:bg-[#57b0c7] hover:text-white transition-colors duration-200"
               >
-                {React.cloneElement(item.icon, { className: "w-6 h-6 text-white" })}
+                {React.cloneElement(item.icon, { className: "w-6 h-6" })}
               </a>
               <span className="absolute -top-10 left-1/2 -translate-x-1/2 text-xs bg-white text-black px-3 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                 {item.name}

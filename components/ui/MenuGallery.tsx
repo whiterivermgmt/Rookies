@@ -5,11 +5,15 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const galleryImages = [
-  "/gallery/galery2.jpg",
-  "/gallery/gallery15.jpg",
-  "/gallery/gallery16.jpg",
-  "/gallery/gallery17.jpg",
-  "/gallery/gallery18.jpg",
+  "/gallery/galery3.jpg",
+  "/gallery/galery6.jpg",
+  "/gallery/galery7.jpg",
+  "/gallery/gallery8.jpg",
+  "/gallery/gallery9.jpg",
+  "/gallery/galery11.jpg",
+  "/gallery/galery12.jpg",
+  "/gallery/gallery19.jpg",
+  "/gallery/gallery20.jpg",
 ];
 
 const EventsGallery = () => {
@@ -45,7 +49,7 @@ const EventsGallery = () => {
 
   return (
     <div className="w-full max-w-6xl relative my-12">
-      <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">Past Event Highlights</h2>
+      <h2 className="text-3xl font-bold text-[#57b0c7] mb-4 text-center">Our Products</h2>
 
       {/* Modern Arrows */}
       <button

@@ -10,10 +10,10 @@ import LiveRadio from "@/components/ui/LiveRadio";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - Fun! 90.1 WBED",
-    default: "Fun! 90.1 WBED",
+    template: "%s - Johnny Junctions",
+    default: "Johnny Junctions",
 },
-description: "Gerkin Construction expert roofing, gutters, siding & repairs for homes and businesses. Reliable, quality service you can trust."
+description: "The Primitive Porch – Bedford, IN. Amish furniture, rustic & farmhouse decor, gifts, handmade items, and a Christian bookstore."
 };
 
 export default function RootLayout({
@@ -24,7 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-poppins antialiased`}>
-        <LiveRadio />
+        
+      <SocialMediaHeader />
        <Header />
         {children}
         <Footer />

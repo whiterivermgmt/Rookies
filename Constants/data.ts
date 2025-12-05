@@ -1,36 +1,32 @@
 import {
-  Image as ImageIcon,
-  FileText,
-  Palette,
-  Ruler,
-  Package,
-  Printer,
-  Stamp,
-  Box,
-  ClipboardList,
-  BadgeQuestionMark,
   BookOpen,
   Users,
+  ClipboardList,
   Radio,
+  Image,
 } from "lucide-react";
+import { GrArticle } from "react-icons/gr";
 
 export const headerData = [
+  /** LEFT SIDE */
   { title: "Home", href: "/", side: "left" },
 
   {
     title: "About",
-    href: "/whatwedo", // not used as a button — hover opens submenu
+    href: "/whatwedo",
+    side: "left",
     submenu: [
-      { title: "What We Do", href: "/whatwedo", icon: BookOpen },
-      { title: "Who We Are", href: "/whoweare", icon: Users },
-      { title: "Advertise", href: "/advertise", icon: ClipboardList },
-      { title: "FCC Public File", href: "https://publicfiles.fcc.gov/fm-profile/WBED", icon: Radio },
+      { title: "About Us", href: "/whatwedo", icon: BookOpen },
+      { title: "Gallery", href: "/gallery", icon: Image },
+      { title: "Contact", href: "/contact", icon: ClipboardList },
+      {
+        title: "Events",
+        href: "/events",
+        icon: GrArticle,
+      },
     ],
   },
 
-  { title: "Shows", href: "/shows" },
-  { title: "Events", href: "/events" },
-  { title: "Contest", href: "/contest" },
+  { title: "Menu", href: "/menu", side: "left" },
 
-  { title: "Contact", href: "/contact", side: "right" },
 ];

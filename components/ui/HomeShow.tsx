@@ -20,15 +20,15 @@ const HomeContests = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl font-bold text-gray-900">Daily Contests</h2>
+            <h2 className="text-3xl font-bold text-gray-900">Who We Are</h2>
             <p className="text-gray-700 text-lg leading-relaxed">
-              Fun! 90.1 brings you exciting contests every single day! Tune in for a chance to win prizes, music, and hometown experiences—you never know what’s coming next.
+              At Johnny Junxions, we’re more than just a gas station—we’re a local hub for great food, friendly faces, and quick convenience. From our made-to-order pizzas and signature chicken tenders to grab-and-go favorites, every meal is crafted with care and served with a smile. Whether you’re fueling up your car or your appetite, Johnny Junxions is your go-to spot for convenience, flavor, and a welcoming community vibe.
             </p>
             <Link 
-              href="/contest" 
-              className="inline-block mt-4 px-6 py-3 bg-red-700 text-white rounded-full font-semibold hover:bg-red-600 transition"
+              href="/whatwedo" 
+              className="inline-block mt-4 px-6 py-3 bg-[#57b0c7] text-white rounded-full font-semibold hover:bg-black transition"
             >
-              Join the Contests
+              Learn More
             </Link>
           </motion.div>
 
@@ -41,7 +41,7 @@ const HomeContests = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Image
-              src="/locations/contest.jpg" 
+              src="/gallery/owner.jpg" 
               alt="Daily Contests"
               width={600}
               height={400}
