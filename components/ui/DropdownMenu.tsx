@@ -23,7 +23,7 @@ const DropdownMenu: React.FC<DropdownProps> = ({ menuTitle }) => {
   if (!services.length) return null;
 
   return (
-    <div className="w-[520px] rounded-xl bg-gray-100/95 shadow-xl ring-1 ring-gray-900/10 overflow-hidden">
+    <div className="w-[520px] rounded-xl bg-gray-900 shadow-2xl overflow-hidden ring-1 ring-red-600">
       <div className="p-4 grid grid-cols-2 gap-4">
         {services.map((service) => {
           const IconComponent = service.icon || Phone;
@@ -31,15 +31,15 @@ const DropdownMenu: React.FC<DropdownProps> = ({ menuTitle }) => {
             <Link
               key={service.title}
               href={service.href}
-              className="flex items-center gap-x-4 p-3 rounded-lg hover:bg-gray-200 transition w-full"
+              className="flex items-center gap-x-4 p-4 rounded-lg bg-gray-800 hover:bg-red-600 transition transform hover:scale-105 shadow-md"
             >
-              <div className="flex w-10 h-10 items-center justify-center bg-gray-200 rounded-lg">
-                <IconComponent className="w-5 h-5 text-gray-600" />
+              <div className="flex w-12 h-12 items-center justify-center bg-red-600 rounded-lg">
+                <IconComponent className="w-6 h-6 text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="font-semibold text-gray-900">{service.title}</span>
-                <span className="text-sm text-gray-600">
-                  {service.description ?? "Professional services."}
+                <span className="font-bold text-white text-lg">{service.title}</span>
+                <span className="text-sm text-gray-300">
+                  {service.description ?? "Exciting entertainment experience."}
                 </span>
               </div>
             </Link>

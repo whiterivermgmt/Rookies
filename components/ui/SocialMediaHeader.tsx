@@ -1,58 +1,91 @@
 "use client";
 
-import React from "react";
-import { SiFacebook, SiGoogle, SiYelp } from "react-icons/si";
+import React, { useEffect, useState } from "react";
+import { SiFacebook, SiGoogle } from "react-icons/si";
+import { motion, AnimatePresence } from "framer-motion";
+
+const newsItems = [
+  "Now Open Daily • Come Eat With Us!",
+  "Fresh Food • Friendly Faces • Local Favorite",
+  "Book a Reservation Today!",
+];
 
 const SocialMediaHeader = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % newsItems.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   const socials = [
     {
-      icon: <SiFacebook size={18} />,
-      href: "https://www.facebook.com/profile.php?id=100063690004065",
+      icon: <SiFacebook size={16} />,
+      href: "https://www.facebook.com/RookiesBedford",
       label: "Facebook",
+      bg: "#1877F2",
     },
     {
-      icon: <SiGoogle size={18} />,
-      href: "https://www.google.com/search?sca_esv=9c3862cfc17cffc5&sxsrf=AE3TifMa8xb2_CI0uYt4QcGNRTgJk6Omcg:1764946093391&q=johnny+junctions&si=AMgyJEuzsz2NflaaWzrzdpjxXXRaJ2hfdMsbe_mSWso6src8szS_kfyWLZmGKDiOKotrhr4CC9dguth3_WrJZHOzfJkwNnzpR653fN5y7hM9zwprjrTitFENJKxqX-22jO1jymUOATWA&sa=X&sqi=2&ved=2ahUKEwiZ2MbH2KaRAxUvATQIHYHhG_wQrrQLegQIHRAA&biw=1920&bih=919&dpr=1",
-      label: "Google Reviews",
+      icon: <SiGoogle size={16} />,
+      href: "https://www.google.com",
+      label: "Google",
+      bg: "#DB4437",
     },
-  
   ];
 
   return (
-    <div className="w-full z-50 backdrop-blur-md">
-      <div className="w-full bg-[#57b0c7] shadow-md">
-        <div className="max-w-7xl mx-auto flex flex-row items-center justify-between gap-2 px-6 py-2 text-white">
-          
-          {/* Left Side: Schedule + Phone */}
-          <div className="flex flex-col sm:flex-col md:flex-row items-start md:items-center gap-1 md:gap-4 font-semibold text-left">
-            <span>Order Ahead!</span>
+    <div className="w-full z-50">
+      <div className="w-full bg-gradient-to-r from-[#7a0f14] via-[#b92e35] to-[#972b2b] text-white shadow-md">
+        <div className="max-w-7xl mx-auto px-6 py-3 grid grid-cols-[1fr_auto_1fr] items-center">
+
+          {/* Left: Reservation */}
+          <div className="text-left font-semibold text-sm tracking-wide whitespace-nowrap">
+            Book a Reservation:{" "}
             <a
-              href="tel:+18122770436"
-              className="font-bold underline hover:text-gray-200 transition-colors duration-200"
+              href="tel:+10000000000"
+              className="underline hover:text-white/80 transition"
             >
-               (812)-277-0436
+              (000)-000-000
             </a>
           </div>
 
-          {/* Right Side: Social Icons */}
-          <div className="flex gap-3 items-center">
+          {/* Center: Rotating News (FIXED) */}
+          <div className="relative flex items-center justify-center min-h-[1.25rem] text-sm font-semibold tracking-wide text-center px-4">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.3 }}
+              >
+                {newsItems[index]}
+              </motion.span>
+            </AnimatePresence>
+          </div>
+
+          {/* Right: Social Icons */}
+          <div className="flex justify-end items-center gap-3">
             {socials.map((social, idx) => (
-              <div key={idx} className="relative group flex flex-col items-center">
+              <div key={idx} className="relative group">
                 <a
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white hover:text-black transition-colors cursor-pointer p-1 rounded-full"
+                  className="w-8 h-8 flex items-center justify-center rounded-full text-white transition-transform hover:scale-110"
+                  style={{ backgroundColor: social.bg }}
                 >
                   {social.icon}
                 </a>
-                {/* Tooltip */}
-                <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs bg-white text-black px-3 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-50">
+                <span className="absolute -bottom-7 left-1/2 -translate-x-1/2 text-xs bg-white text-black px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
                   {social.label}
                 </span>
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </div>

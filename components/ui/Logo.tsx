@@ -37,7 +37,7 @@ const Logo = () => {
         style={{ transformStyle: "preserve-3d" }}
       >
         <Image
-  src="/johnny/logo1.png"
+  src="/johnny/rookie1.png"
   alt="Johnny Junxion"
   width={600}
   height={180}

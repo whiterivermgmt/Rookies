@@ -59,13 +59,14 @@ const Header = () => {
 <div className="flex items-center justify-end flex-none lg:w-1/3">
   {!isMobileMenu && (
     <a
-      href="tel:+18122770436"
+      href="/pricing" // Update this link to your Party Packages page
       className="whitespace-nowrap px-5 py-2 rounded-full bg-red-600 text-white font-semibold text-lg shadow-md hover:bg-red-700 hover:scale-105 transition transform"
     >
-      Order Ahead
+      Party Packages
     </a>
   )}
 </div>
+
 
   </Container>
 

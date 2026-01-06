@@ -39,14 +39,19 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   const socialLinks = [
     {
-      href: "https://www.facebook.com/profile.php?id=100063690004065",
+      href: "https://www.facebook.com/RookiesBedford",
       icon: <SiFacebook />,
       name: "Facebook",
     },
     {
-      href: "https://www.google.com/search?q=johnny+junctions",
+      href: "https://www.google.com",
       icon: <SiGoogle />,
       name: "Google Reviews",
+    },
+    {
+      href: "https://www.instagram.com/",
+      icon: <SiInstagram />,
+      name: "Instagram",
     },
   ];
 
@@ -70,14 +75,14 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
 
       {/* Sidebar */}
       <motion.div
-        className="fixed top-0 left-0 h-full w-72 z-50 shadow-xl flex flex-col justify-between rounded-r-3xl bg-gray-100"
+        className="fixed top-0 left-0 h-full w-72 z-50 shadow-xl flex flex-col justify-between rounded-r-3xl bg-white"
         initial={{ x: "-100%" }}
         animate={{ x: isOpen ? 0 : "-100%" }}
         transition={{ type: "spring", stiffness: 200, damping: 25 }}
       >
         {/* Logo */}
-        <div className="flex justify-center items-center p-6 border-b border-gray-300">
-          <Logo />
+        <div className="flex justify-center items-center p-6 border-b border-gray-200">
+          <Logo  />
         </div>
 
         {/* Menu Items */}
@@ -90,27 +95,19 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
               <div key={item.title} className="w-full">
                 {/* Main item */}
                 <div
-                  className={`flex justify-between items-center w-full px-5 py-4 text-lg font-bold rounded-2xl cursor-pointer transition-colors duration-200
-                    ${isActive ? "bg-[#57b0c7] text-white" : "text-gray-800"}
-                    hover:bg-[#57b0c7] hover:text-white`}
+                  className={`flex justify-between items-center w-full px-5 py-4 text-lg font-semibold rounded-2xl cursor-pointer transition-colors duration-200
+                    ${isActive ? "bg-red-600 text-white" : "text-gray-800"}
+                    hover:bg-red-600 hover:text-white`}
                   onClick={() =>
                     hasSubmenu ? toggleSubmenu(idx) : handleClose()
                   }
                 >
                   {hasSubmenu ? (
-                    <span
-                      className={`transition-colors duration-200 ${
-                        isActive ? "text-white" : "text-gray-800"
-                      }`}
-                    >
-                      {item.title}
-                    </span>
+                    <span>{item.title}</span>
                   ) : (
                     <Link
                       href={item.href}
-                      className={`w-full transition-colors duration-200 ${
-                        isActive ? "text-white" : "text-gray-800"
-                      }`}
+                      className="w-full"
                       onClick={handleClose}
                     >
                       {item.title}
@@ -134,7 +131,7 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.3 }}
+                      transition={{ duration: 0.25 }}
                       className="flex flex-col ml-4 mt-2 gap-2"
                     >
                       {item.submenu.map((sub) => {
@@ -144,13 +141,13 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                             key={sub.title}
                             href={sub.href}
                             onClick={handleClose}
-                            className={`px-4 py-2 rounded-xl text-base font-semibold transition-colors duration-200
+                            className={`px-4 py-2 rounded-xl text-base font-medium transition-colors duration-200
                               ${
                                 isSubActive
-                                  ? "bg-[#57b0c7] text-white"
+                                  ? "bg-red-600 text-white"
                                   : "text-gray-800"
                               }
-                              hover:bg-[#57b0c7] hover:text-white`}
+                              hover:bg-red-600 hover:text-white`}
                           >
                             {sub.title}
                           </Link>
@@ -172,7 +169,7 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-12 h-12 rounded-full bg-[#57b0c7] text-white shadow-md hover:bg-[#57b0c7] hover:text-white transition-colors duration-200"
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-red-600 text-white shadow-md hover:bg-red-700 hover:scale-105 transition transform duration-200"
               >
                 {React.cloneElement(item.icon, { className: "w-6 h-6" })}
               </a>

@@ -10,10 +10,10 @@ import LiveRadio from "@/components/ui/LiveRadio";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - Johnny Junctions",
-    default: "Johnny Junctions",
-},
-description: "The Primitive Porch – Bedford, IN. Amish furniture, rustic & farmhouse decor, gifts, handmade items, and a Christian bookstore."
+    template: "%s - Rookies Entertainment",
+    default: "Rookies Entertainment",
+  },
+  description: "Rookies Bedford – Bedford, IN. Family-friendly entertainment center featuring axe throwing, arcade games, golf & sports simulators, a full-service restaurant and bar, party rooms, and events for all ages."
 };
 
 export default function RootLayout({

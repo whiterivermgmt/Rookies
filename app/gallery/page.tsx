@@ -1,126 +1,77 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import { IoIosArrowBack, IoIosArrowForward, IoMdClose } from "react-icons/io";
 
-const galleryImages = [
-  "/gallery/galery1.jpg",
-  "/gallery/galery2.jpg",
-  "/gallery/galery3.jpg",
-  "/gallery/galery4.jpg",
-  "/gallery/galery5.jpg",
-  "/gallery/galery6.jpg",
-  "/gallery/galery7.jpg",
-  "/gallery/gallery8.jpg",
-  "/gallery/gallery9.jpg",
-  "/gallery/gallery10.jpg",
-  "/gallery/galery11.jpg",
-  "/gallery/galery12.jpg",
-  "/gallery/gallery13.jpg",
-  "/gallery/gallery14.jpg",
-  "/gallery/gallery15.jpg",
-  "/gallery/gallery16.jpg",
-  "/gallery/gallery17.jpg",
-  "/gallery/gallery18.jpg",
-  "/gallery/gallery19.jpg",
-  "/gallery/gallery20.jpg",
-];
-
-const GalleryPage = () => {
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-
-  const openLightbox = (index: number) => setLightboxIndex(index);
-  const closeLightbox = () => setLightboxIndex(null);
-
-  const prevImage = () => {
-    if (lightboxIndex !== null) {
-      setLightboxIndex((lightboxIndex - 1 + galleryImages.length) % galleryImages.length);
-    }
-  };
-
-  const nextImage = () => {
-    if (lightboxIndex !== null) {
-      setLightboxIndex((lightboxIndex + 1) % galleryImages.length);
-    }
-  };
+const ComingSoonPage = () => {
+  // Colors for floating shapes
+  const colors = ["#F87171", "#FBBF24", "#34D399", "#60A5FA", "#A78BFA"];
 
   return (
-    <main className="min-h-screen bg-white pt-24 px-4 flex flex-col items-center">
-      {/* ↑ added pt-24 to move title down */}
-      <h1 className="text-4xl font-bold mb-8 text-[#57b0c7]">Johnny Junxions Gallery</h1>
+    <main className="min-h-[80vh] flex flex-col items-center justify-center relative overflow-hidden text-center bg-gray-100">
+      {/* Floating Neon Shapes */}
+      {colors.map((color, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full opacity-40"
+          style={{
+            width: 96,
+            height: 96,
+            backgroundColor: color,
+            top: `${15 + i * 15}%`,
+            left: `${10 + i * 15}%`,
+          }}
+          animate={{
+            y: [0, -30, 0], // float up and down
+            x: [0, 20, 0],  // slight horizontal drift
+          }}
+          transition={{
+            duration: 5 + i, // vary speeds
+            repeat: Infinity,
+            repeatType: "mirror",
+            ease: "easeInOut",
+          }}
+        />
+      ))}
 
-      {/* Gallery Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        {galleryImages.map((src, idx) => (
-          <motion.div
-            key={idx}
-            whileHover={{ scale: 1.05 }}
-            className="cursor-pointer relative overflow-hidden rounded-xl shadow-md border-2 border-transparent hover:border-[#57b0c7] transition"
-            onClick={() => openLightbox(idx)}
-          >
-            <Image
-              src={src}
-              alt={`Gallery Image ${idx + 1}`}
-              width={300}
-              height={200}
-              className="object-cover w-full h-full"
-            />
-          </motion.div>
-        ))}
-      </div>
+      {/* Logo */}
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="mb-6 z-10"
+      >
+        <Image
+          src="/johnny/rookie1.png" // Update path to Rookies logo
+          alt="Rookies Entertainment Logo"
+          width={220}
+          height={120}
+          className="mx-auto"
+        />
+      </motion.div>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightboxIndex !== null && (
-          <motion.div
-            className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <button
-              className="absolute top-6 right-6 text-[#57b0c7] text-4xl hover:text-white transition"
-              onClick={closeLightbox}
-            >
-              <IoMdClose />
-            </button>
-
-            <button
-              className="absolute left-6 text-[#57b0c7] text-4xl hover:text-white transition"
-              onClick={prevImage}
-            >
-              <IoIosArrowBack />
-            </button>
-
-            <motion.div
-              key={lightboxIndex}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="max-w-[90%] max-h-[80%]"
-            >
-              <Image
-                src={galleryImages[lightboxIndex]}
-                alt={`Gallery Image ${lightboxIndex + 1}`}
-                width={800}
-                height={600}
-                className="object-contain w-full h-full"
-              />
-            </motion.div>
-
-            <button
-              className="absolute right-6 text-[#57b0c7] text-4xl hover:text-white transition"
-              onClick={nextImage}
-            >
-              <IoIosArrowForward />
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Coming Soon Box */}
+      <motion.div
+        initial={{ y: 30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl max-w-md z-10"
+      >
+        <h1 className="text-5xl font-extrabold mb-3 text-black">Coming Soon!</h1>
+        <p className="text-lg mb-5 text-black">
+          Rookies is almost ready to open! Get ready for the ultimate entertainment experience with parties, games, and family fun. Stay tuned!
+        </p>
+        <Link
+          href="/"
+          className="inline-block px-6 py-3 rounded-xl bg-red-600 text-white font-bold hover:bg-red-700 transition transform hover:scale-105 shadow-md"
+        >
+          Go to Home
+        </Link>
+      </motion.div>
     </main>
   );
 };
 
-export default GalleryPage;
+export default ComingSoonPage;
