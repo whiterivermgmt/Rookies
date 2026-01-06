@@ -10,6 +10,21 @@ const newsItems = [
   "Book a Reservation Today!",
 ];
 
+const socials = [
+  {
+    icon: <SiFacebook size={16} />,
+    href: "https://www.facebook.com/RookiesBedford",
+    label: "Facebook",
+    bg: "#1877F2",
+  },
+  {
+    icon: <SiGoogle size={16} />,
+    href: "https://www.google.com",
+    label: "Google",
+    bg: "#DB4437",
+  },
+];
+
 const SocialMediaHeader = () => {
   const [index, setIndex] = useState(0);
 
@@ -20,28 +35,13 @@ const SocialMediaHeader = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const socials = [
-    {
-      icon: <SiFacebook size={16} />,
-      href: "https://www.facebook.com/RookiesBedford",
-      label: "Facebook",
-      bg: "#1877F2",
-    },
-    {
-      icon: <SiGoogle size={16} />,
-      href: "https://www.google.com",
-      label: "Google",
-      bg: "#DB4437",
-    },
-  ];
-
   return (
     <div className="w-full z-50">
       <div className="w-full bg-gradient-to-r from-[#7a0f14] via-[#b92e35] to-[#972b2b] text-white shadow-md">
-        <div className="max-w-7xl mx-auto px-6 py-3 grid grid-cols-[1fr_auto_1fr] items-center">
-
+        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+          
           {/* Left: Reservation */}
-          <div className="text-left font-semibold text-sm tracking-wide whitespace-nowrap">
+          <div className="text-sm font-semibold whitespace-nowrap">
             Book a Reservation:{" "}
             <a
               href="tel:+10000000000"
@@ -51,8 +51,8 @@ const SocialMediaHeader = () => {
             </a>
           </div>
 
-          {/* Center: Rotating News (FIXED) */}
-          <div className="relative flex items-center justify-center min-h-[1.25rem] text-sm font-semibold tracking-wide text-center px-4">
+          {/* Center: Rotating News (Desktop Only) */}
+          <div className="hidden md:flex relative flex-1 justify-center text-sm font-semibold tracking-wide min-h-[1.25rem] px-4">
             <AnimatePresence mode="wait">
               <motion.span
                 key={index}
@@ -67,7 +67,7 @@ const SocialMediaHeader = () => {
           </div>
 
           {/* Right: Social Icons */}
-          <div className="flex justify-end items-center gap-3">
+          <div className="flex items-center gap-3">
             {socials.map((social, idx) => (
               <div key={idx} className="relative group">
                 <a
